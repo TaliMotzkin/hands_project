@@ -6,7 +6,7 @@ import shutil
 
 print("Current Working Directory:", os.getcwd())
 
-def filter_hands_exposure_time(hands_exposure_time, directory, output_directory,number_of_hands):
+def filter_hands_exposure_time(hands_exposure_time, directory, output_directory,number_of_hands,show):
     '''
     This function saves in the output directory inly videos that exceed the exposure time given.
     number of hands indicate on how many hands is enough for saving the video.
@@ -53,9 +53,10 @@ def filter_hands_exposure_time(hands_exposure_time, directory, output_directory,
                 total_frames += 1  #total frames
 
                 # Show the frame - can be removed during all videos processing
-                cv2.imshow('Hands', frame)
-                if cv2.waitKey(1) & 0xFF == 27:
-                    break
+                if show == True:
+                    cv2.imshow('Hands', frame)
+                    if cv2.waitKey(1) & 0xFF == 27:
+                        break
 
 
             # calculations
@@ -72,4 +73,4 @@ def filter_hands_exposure_time(hands_exposure_time, directory, output_directory,
     cv2.destroyAllWindows()
 
 
-filter_hands_exposure_time(60,r".\exampels", r".\filterd",2 )
+filter_hands_exposure_time(60,r".\exampels", r".\filterd",2 ,True)
